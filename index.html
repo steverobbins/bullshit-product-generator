@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bullshit Product Generator</title>
+        <style>
+            body{
+                margin: 200px auto 40px;
+                max-width: 85%;
+                line-height:1.6;
+                font-size:18px;
+                color:#444;
+                padding: 0 10px;
+                text-align: center;
+            }
+
+            header {
+                text-align: center;
+                font-size: 1em;
+            }
+
+            #product {
+                font-size: 3em;
+                margin: 100px auto 70px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            footer {
+                margin-top: 100px;
+                font-size: .6em
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            Your million dollar product idea is...
+        </header>
+        <div id="product">
+        </div>
+        <a href="/" onClick="window.location.reload(); return false;">I want another bullshit subscription product idea.</a>
+        <footer>
+            <a href="https://github.com/steverobbins/bullshit-product-generator">Github</a> | <a href="https://steverobbins.com/">&copy; <span id="year">2019</span> Steve Robbins</a>
+        </footer>
+        <script type="text/javascript">
+            var bullshit = [
+                'hemp',
+                'hemp seed',
+                'mushroom',
+                'avocado',
+                'kale',
+                'lemon',
+                'probiotic',
+                'ginger',
+                'tumeric',
+                'fish',
+                'spinach',
+                'green tea',
+                'almond',
+                'pistachio',
+                'chia seed',
+                'flax seed',
+            ];
+
+            var bullshitEnhancerChance = 25; // %
+            var bullshitEnhancer = [
+                'oil',
+                'extract',
+                'essence',
+                'infused',
+            ];
+
+            var consumable = [
+                // things you drink
+                'water',
+                'beer',
+                'wine',
+                'vodka',
+                'tequila',
+                'kombucha',
+                'soda',
+                'juice',
+
+                // things you use to make things you drink
+                'tea leaves',
+                'coffee beans',
+
+                // things you eat
+                'chewing gum',
+                'mints',
+
+                // things you rub on yourself
+                'lotion',
+                'moisturizer',
+                'shampoo',
+                'conditioner',
+                'body wash',
+                'lip balm',
+                'deoodorant',
+                'wrinkle cream',
+                'anti aging cream',
+
+                // women, am I right?
+                'face mask',
+                'eye shadow',
+                'lipstick',
+                'tampons',
+
+                // people are morons
+                'dish soap',
+                'dog shampoo',
+            ];
+
+            var product = bullshit[Math.floor(Math.random() * bullshit.length)];
+            if (Math.floor(Math.random() * 100) + 1 <= bullshitEnhancerChance) {
+                product += ' ' + bullshitEnhancer[Math.floor(Math.random() * bullshitEnhancer.length)];
+            }
+            product += ' ' + consumable[Math.floor(Math.random() * consumable.length)];
+            document.getElementById('product').innerHTML = product.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+
+            document.getElementById("year").innerHTML = new Date().getFullYear();
+        </script>
+    </body>
+</html>
