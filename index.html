@@ -44,6 +44,8 @@
         <a href="/" onClick="window.location.reload(); return false;">I want another bullshit idea.</a>
         <footer>
             <a href="https://github.com/steverobbins/bullshit-product-generator">Github</a> | Made by a millenial | <a href="https://steverobbins.com/">&copy; <span id="year">2019</span> Steve Robbins</a>
+            <br />
+            By me some <a href="https://www.patreon.com/steve_robbins/" id="beg">beer</a>.
         </footer>
         <script type="text/javascript">
             var bullshit = [
@@ -143,6 +145,7 @@
             }
             product += ' ' + consumable[Math.floor(Math.random() * consumable.length)];
             document.getElementById('product').innerHTML = product.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+            document.getElementById('beg').innerHTML = product.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 
             document.getElementById("year").innerHTML = new Date().getFullYear();
         </script>
