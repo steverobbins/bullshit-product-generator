@@ -48,6 +48,17 @@
             Buy me some <a href="https://www.patreon.com/steve_robbins/" id="beg">beer</a>.
         </footer>
         <script type="text/javascript">
+
+            var bullshitAdjectiveChance = 25;
+            var bullshitAdjectives = [
+                'ancient',
+                'chinese',
+                'deep sea',
+                'glacier',
+                'grass fed',
+                'powdered',
+            ];
+
             var bullshit = [
                 'acai berry',
                 'agave',
@@ -55,6 +66,8 @@
                 'avocado',
                 'chia seed',
                 'coconut',
+                'cold brew',
+                'collagen',
                 'fish',
                 'flax seed',
                 'ginger',
@@ -66,9 +79,12 @@
                 'lemon peel',
                 'matcha green tea',
                 'miso',
+                'monk fruit',
+                'multigrain',
                 'mushroom',
                 'oyster',
                 'pistachio',
+                'prebiotic',
                 'probiotic',
                 'quinoa',
                 'rose petal',
@@ -76,17 +92,21 @@
                 'turmeric',
                 'wheat grass',
                 'whey protein',
+                'whole grain',
             ];
 
             var bullshitEnhancerChance = 25; // %
-            var bullshitEnhancer = [
+            var bullshitEnhancers = [
+                'boosted',
                 'essence',
                 'extract',
                 'infused',
                 'oil',
+                'scented',
+                'spiked',
             ];
 
-            var consumable = [
+            var consumables = [
                 // things you drink
                 'beer',
                 'juice',
@@ -95,6 +115,7 @@
                 'soda',
                 'sparkling water',
                 'tequila',
+                'tonic',
                 'vodka',
                 'water',
                 'wine',
@@ -107,6 +128,8 @@
                 'butter',
                 'chewing gum',
                 'mints',
+                'pills',
+                'powder',
 
                 // things you rub on yourself
                 'anti aging cream',
@@ -115,6 +138,7 @@
                 'hair conditioner',
                 'lip balm',
                 'lotion',
+                'lubricant',
                 'moisturizer',
                 'shampoo',
                 'shaving cream',
@@ -130,20 +154,36 @@
                 'beard cream',
                 'condoms',
                 'moustache wax',
+                'pomade',
 
                 // people are morons
                 'candles',
                 'dish soap',
                 'dog shampoo',
                 'mouth wash',
+                'nasal strips',
+                'subscription box',
                 'tooth paste',
             ];
 
-            var product = bullshit[Math.floor(Math.random() * bullshit.length)];
-            if (Math.floor(Math.random() * 100) + 1 <= bullshitEnhancerChance) {
-                product += ' ' + bullshitEnhancer[Math.floor(Math.random() * bullshitEnhancer.length)];
+            function randomChance(chance) {
+                return Math.floor(Math.random() * 100) + 1 <=  chance;
             }
-            product += ' ' + consumable[Math.floor(Math.random() * consumable.length)];
+
+            function randomElement(elements) {
+                return elements[Math.floor(Math.random() * elements.length)];
+            }
+
+            var bullshitAdjective = '';
+            if (randomChance(bullshitAdjectiveChance)) {
+                bullshitAdjective = randomElement(bullshitAdjectives) + ' ';
+            }
+
+            var product = bullshitAdjective + randomElement(bullshit);
+            if (bullshitAdjective.length === 0 && randomChance(bullshitEnhancerChance)) {
+                product += ' ' + randomElement(bullshitEnhancers);
+            }
+            product += ' ' + randomElement(consumables);
             document.getElementById('product').innerHTML = product.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
             document.getElementById('beg').innerHTML = product.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 
